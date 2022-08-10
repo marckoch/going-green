@@ -1,0 +1,69 @@
+= Fragen, Gedanken, Annahmen
+
+Fragen, Gedanken, Annahmen, die sich aus dem Kata ergeben.
+
+* Es scheint kein existierendes System anzubinden zu sein
+* Einziges Fremdsystem evtl eine Art Zahlungssystem (Schecks verschicken? Evtl gibt es da Lösungen?)
+
+== Kiosk
+* Was ist mit Kiosk gemeint? Ein kleines Geschäft (Tabak und Zeitungen?) oder ein kleines elektronisches Terminal (z.B. diese automatischen Lageplan-Terminals im Einkaufszentrum? Die heissen nämlich im Englischen auch Kiosk: https://fitsmallbusiness.com/what-is-a-kiosk-examples/). Ich vermute, da es sich um einen amerikanischen Autor handelt, es sind kleine Terminals gemeint -- kein Tabak-/Zeitungsladen.
+* Was machen die Kioske?->An den Kiosks kann der Kunde eine Abfrage machen: "Was bekomme ich für dieses Gerät?"
+* Offen: Warum braucht man überhaupt die Kiosks? Es hat doch (fast) jeder ein Handy.
+
+*Annahme*: Der Kiosk ist ein Terminal (Bildschirm und Tastatur, oder nur Bildschirm mit on-screen-/Touch-Tastatur), welches einen Browser zeigt, mit dem die Abfrage gemacht werden kann. Es ist dieselbe Anwendung/Oberfläche, die der Kunde auch sieht, wenn er im Web schaut.
+Im Terminalbrowser kann keine Webadresse eingegeben werden.
+Dieser Browser zeigt immer nur die Webseite von `GoingGreen` an. (https://de.wikipedia.org/wiki/Kiosk-Modus)
+
+== Auswertungen
+
+"If we haven’t received a type of electronic equipment in a year we will remove it from our system"
+
+Das impliziert, dass es eine Art Auswertung geben muss.
+Wann wird wie oft vom Kunden welches Gerät angeboten und eingeschickt.
+Dies kann auch Hinweise auf fehlende Geräte im Sortiment geben.
+Wenn z.B. jede Woche 10 Anfragen kommen ein Gerät X abzugeben,
+sollte man dieses Gerät schnellstmöglich ins Sortiment abgebbarer Geräte aufnehmen.
+
+== Suche
+
+Es ist eine Suche nötig, in der der Kunde recht grobe Suchbegriffe eingeben kann,
+die aber trotzdem zu akzeptablen Treffern führen sollen, ähnlich Amazon, ebay, etc.
+Durch Verfeinerung der Eingabe werden bessere Treffer gefunden und die Treffermenge eingeschränkt.
+
+== Annahmeregeln und Restwertermittlung
+
+"Each type of electronic has its own set of rules for quoting and assessment."
+
+Es gibt für jedes Gerät:
+
+* einen Basis-Restwert
+* eine Regel: pro Jahr des Alters gibt es x % Abzug vom Basis-Restwert
+(also z.B. 12% pro Jahr, welches das Gerät alt ist)
+* n Defekt-abhängige Regeln für Abzüge vom Restwert. Je nach Defekten gibt es Abzüge, z.B.
+"Gesprungenes Display->20% Abzug", "Akku defekt->10% Abzug", etc.
+
+Der Kunde gibt das Alter des Gerätes and und wählt zutreffende Defekt-Restwertabzüge aus.
+Am Ende kommt dadurch der zu erwartende Gesamt-Restwert zustande.
+
+Evtl auch mit einer Logik: Wenn mehr als n Defekte angegeben werden
+(oder das Gerät älter als x Jahre ist), ist der Restwert automatisch immer 0.
+
+== Kunde
+
+* Soll jeder Kunde sich erst registrieren oder kann ein Kunde auch als Gast eine Einsendung starten?
+->Wir gehen erstmal vom einfachen Fall aus: Der Kunde meldet sich nicht an.
+Er hat kein Kundenkonto. Er muss bei jedem Gerät, welches er einsenden will,
+seine Daten erneut eingeben.
+* Soll der Kunde nach Einsenden des Gerätes den Vorgang im System einsehen können?
+-> Annahme: Ja, sollte nicht so schwer sein (Vorgang in der Weboberfläche anzeigen),
+bringt aber erhöhten Benutzerkomfort (Für die Architektur aber nicht weiter relevant)
+
+== Status
+
+Der gesamte Prozess besteht aus synchronen (Kunde sucht Gerät im System) und asynchronen Anteilen (Kunde schickt Gerät ein). Die gesamte Prozesskette ist im System mit einem Status versehen, so dass jederzeit einsehbar ist, wo der Prozess steht.
+
+== Auszahlung
+
+Es steht nur etwas von Schecks. Evtl könnte man auch andere Zahlungsmöglichkeiten nutzen? Paypal, etc.
+
+->Wir beschränken uns hier erstmal nur auf Schecks. Diese werden dann per Post verschickt.

@@ -1,0 +1,50 @@
+[[section-system-scope-and-context]]
+== Fachlicher Context
+
+Folgendes Diagram zeigt den fachlichen Context mit allen Aktoren.
+Aktuell gibt es keinerlei externe Schnittstellen zu anderen Systemen.
+
+.Fachlicher Context
+[plantuml, target=fachlicher-context, format=png]
+....
+@startuml
+left to right direction
+actor "Backoffice" as bo
+actor "Kunde" as k
+actor "Gutachter" as gut
+actor "Buchhaltung" as bh
+actor "Post/Paketdienst" as ppd
+
+rectangle GoingGreen #LightBlue {
+usecase "Pflege Katalog" as catalog
+usecase "Suche nach Gerät" as suche
+usecase "Assessment des Gerätes" as ass
+usecase "Versand des Gerätes" as versand
+usecase "Auszahlung" as ausz
+}
+
+bo -r-> catalog : führt durch
+catalog -[hidden]> suche
+suche -[hidden]> ass
+k -> suche : führt durch
+k -> ass : führt durch
+k --> versand : startet
+ppd -d-> versand : übernimmt
+gut -u-> ass : führt durch
+bh -d-> ausz : genehmigt
+
+@enduml
+....
+
+* Aktoren: Kunde, Gutachter, Buchhaltung, Backoffice, Paketdienst
+
+=== Funktionale Anforderungen
+
+NOTE: Ich bin mir nicht sicher, ob detailliertere UseCases hier hingehören.
+Für das Gesamtverständnis finde ich sie aber förderlich.
+Daher möchte ich den Benutzungsablauf aus Sicht der beteiligten Aktoren hier etwas detaillierter darstellen.
+In einem echten Projekt ist dies Teil der Requirements-Analyse (bzw. Lastenheft o.ä.)
+
+include::../ideas/use-cases.adoc[]
+
+include::../ideas/ablauf-kundentransaktion.adoc[]

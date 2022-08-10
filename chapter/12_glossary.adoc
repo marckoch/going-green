@@ -1,0 +1,28 @@
+[[section-glossary]]
+== Glossar
+
+[cols="1,4" options="header"]
+|===
+|Begriff |Definition
+
+|Assessment, Gutachten
+|Einschätzung des Gerätes (Defekte, Kratzer, etc.). Ein Gutachten macht der Kunde am Anfang.
+Schickt er sein Gerät ein, macht der Gutachter dann das zweite Gutachten.
+
+|Backoffice
+|Mitarbeiter im Backoffice, welche die Daten in der Anwendung pflegen
+
+|KundenTransaktion
+|Der Vorgang, bei dem ein Kunde ein Gerät einsendet, nachdem er es selber begutachtet hat.
+Nach Erhalt führt der Gutachter sein Gutachten durch. Am Ende erhält der Kunde u.U. seine Auszahlung.
+
+|Katalog
+|Der Datenbestand aller in System eingepflegten Geräte
+
+|Kiosk
+|Terminals im Einkaufzentrum, siehe https://fitsmallbusiness.com/what-is-a-kiosk-examples/
+
+|Restwert
+|Der Betrag, den der Kunde bei Einsendung des Gerätes ausbezahlt bekommt.
+
+|===

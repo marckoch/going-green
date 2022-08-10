@@ -1,0 +1,94 @@
+=== Use Cases
+
+Die wichtigsten Use Cases
+
+==== Backoffice: Pflege des Katalog
+
+* Backoffice pflegt Suchkriterien für vorhandene Geräte (basierend auf den anonym protokollierten Suchkriterien der Kunden)
+* Backoffice pflegt ein neues Gerät im System ein
+* Backoffice definiert Restwerte und Qualitäts-/Defektfragen und Abschläge vom Restwert
+* Backoffice entfernt Geräte aus dem Katalog, welche längere Zeit nicht gesucht wurden
+
+==== Kunde: Suche und Restwertermittlung
+
+* Der Kunde hat ein altes Gerät und möchte sich erkundigen, ob er dafür noch etwas bekommen kann
+* Der Kunde sucht in `GoingGreen` nach dem Gerät
+* `GoingGreen` protokolliert immer alle Suchbegriffe der Kunden in anonymisierter Form (dienen zur Verfeinerung/Optimierung der Suchkriterien und zum Entfernen nicht mehr gefragter Geräte aus dem Katalog)
+* ACHTUNG: Suchen von internen Mitarbeitern (Backoffice, Gutachter) z.B. während der
+Pflege des Kataloges fliessen nicht in die Statistiken ein! (Würden diese verfälschen)
+* `GoingGreen` zeigt die möglichen Treffer an (Liste kann leer sein)
+* (optional) Der Kunde verfeinert die Suchkriterien, falls nötig (wie bei bekannten Webshops, amazon, ebay, etc.) und sucht erneut
+* Kunde beendet Suche falls sein Gerät nicht im Sortiment-->Ende
+* Das Gerät des Kunden ist im Sortiment, der Kunde wählt sein Gerät aus
+* `GoingGreen` listet Fragen zum Alter des Gerätes und Qualität/Defekten am Gerät auf
+* Der Kunde beantwortet Fragen (Eigenbegutachtung durch den Kunden)
+* `GoingGreen` merkt sich die Antworten des Kunden auf diese Fragen
+(wichtig für später, falls der Kunde das Gerät einschicken will)
+* `GoingGreen` zeigt den zu erwartenden Restwert an, dieser kann 0 sein
+* `GoingGreen` stellt Frage: Wollen sie ihr Gerät einschicken?
+* Abbruch, falls Kunde Gerät nicht einschicken will->Ende (Daten des Kunden werden verworfen)
+* Kunde will Gerät einschicken->weiter bei "Kunde: Startet KundenTransaktion"
+
+==== Kunde: Startet KundenTransaktion
+* Kunde gibt seine Daten ein:
+** Name
+** Adresse
+** Email
+** Telefon
+* Kunde betätigt Speichern
+* `GoingGreen` speichert eine KundenTransaktion bestehend aus:
+** Vorgangsnummer (vom System erzeugt)
+** Kundendaten (Name, Adresse, Email, Telefon)
+** Datum / Uhrzeit
+** Gerät
+** Eigenbegutachtung des Kunden (Antworten auf die Fragen zur Qualität/Defekten, die oben vom System gemerkt wurden)
+** ermittelten Restwert (das ist später wichtig für den Gutachter)
+** Status "Anfrage eingegangen"
+* Meldung an den Kunden (Bildschirm):
+"Ihre Anfrage ist eingegangen. Sie erhalten in wenigen Tagen eine Rücksendebox"
+
+==== Backoffice: Verschicken des Retourpaketes
+
+* Ein Mitarbeiter im Backoffice sucht im `GoingGreen` nach neuen KundenTransaktionen
+(Annahme: Es gibt keine Benachrichtigung. Mitarbeiter des Backoffice schauen
+eigenständig regelmässig nach neuen KundenTransaktionen)
+* Die KundenTransaktion wird im System gefunden
+* Der Mitarbeiter im Backoffice öffnet die KundenTransaktion
+* Die Rücksendebox wird dem Kunden per Post geschickt
+* Der Mitarbeiter im Backoffice setzt den Status der KundenTransaktion auf "Box verschickt"
+
+==== Kunde: Einschicken des Gerätes
+
+* Der Kunde erhält die Rücksendebox in der Post
+* Der Kunde verschickt das Gerät (unter Angabe der Vorgangsnummer) in der Rücksendebox per Post
+
+==== Gutachter: Empfang und Begutachtung des Gerätes
+
+* Gutachter erhält die Rücksendebox samt Gerät per Post
+* Gutachter sucht KundenTransaktion im `GoingGreen` anhand Vorgangsnummer
+(in oder an Rücksendebox angegeben)
+* Gutachter setzt im `GoingGreen` den Status "Einsendung erhalten"
+* Gutachter untersucht das Gerät und vergleicht sein Gutachten mit den Daten, die der Kunde eingegeben hat
+* Gutachter genehmigt die Eigenbegutachtung durch den Kunden oder nicht.
+* Bei Abweichungen gibt er sein Gutachten im `GoingGreen` ein
+* Gutachter bestimmt den finalen Restwert (kann 0 sein) und schliesst den Vorgang (Status: "Gutachten abgeschlossen")
+* Das Gerät geht dann zum Recycling oder zum Weiterverkauf
+(beides nicht mehr im scope dieses Systems)
+
+==== Buchhaltung: Auszahlung
+
+* Mitarbeiter der Buchhaltung sucht Vorgänge im `GoingGreen` mit
+Status "Gutachten abgeschlossen" und einem Restwert grösser 0 und findet den obigen Vorgang
+* Mitarbeiter der Buchhaltung verschickt den Scheck mit dem finalen Restwert und
+verbucht das im `GoingGreen` (Status "Auszahlung erfolgt")
+
+[NOTE]
+====
+Die letzten Punkte sind etwas unklar, sind für diesen ersten groben Architekturentwurf aber nicht weiter relevant.
+Sie betreffen eher Details in Geschäftsprozess.
+Z.B. könnten aus fachlicher Sicht noch andere Status Sinn machen.
+
+Vermutlich wird auch nicht der Gutachter das Rücksendepaket in Empfang nehmen,
+sondern eine Poststelle, die das Gerät dann intern per Hauspost an den Gutachter weiterleitet.
+In einem echten Projekt müsste man hier die internen Gegebenheiten des Auftraggebers berücksichtigen.
+====

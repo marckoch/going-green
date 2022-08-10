@@ -1,0 +1,26 @@
+[[section-deployment-view]]
+== Verteilungssicht
+
+.Verteilungssicht
+[plantuml, target=Verteilungssicht, format=png]
+....
+@startuml
+node Kunden-PC {
+    node Browser1
+}
+
+node Terminal {
+    node Browser2
+}
+
+cloud CloudProvider {
+    node GoingGreen
+}
+
+Browser1 -d-> GoingGreen: HTTPS
+Browser2 -d-> GoingGreen: HTTPS
+
+@enduml
+....
+
+*TODO* CloudProvider sollte man noch genauer beschreiben, sobald Details bekannt sind

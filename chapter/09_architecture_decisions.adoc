@@ -1,0 +1,26 @@
+[[section-design-decisions]]
+== Architekturentscheidungen
+
+.Architekturentscheidungen
+[cols="1,2"]
+|===
+|Thema|Begründung
+
+|Solr/Lucene als Search Engine
+|Hiermit bekommt man eine optimale Suchfunktionalität
+(Gross-/Kleinschreibung, Wildcardsuche, etc.) fast geschenkt.
+ElasticSearch wurde wegen unklarer Lizenz verworfen.
+Weitere Alternativen wurden nicht untersucht.
+
+|AWS als externe CloudProvider
+|Da es hier keine Vorgaben gibt, nehme ich das womit ich mich am besten auskenne.
+
+|Techstack: Kotlin/SpringBoot/Postgres
+|Da es hier keine Vorgaben gibt, nehme ich das womit ich mich am besten auskenne :-)
+
+|klassische Webanwendung, serverside rendering, keine 'single page application'
+|Es gibt keine Anforderung einer reaktiven Oberfläche und der Umfang der Oberfläche scheint recht gering.
+
+Hiermit ist auch die Anforderung, dass die Anwendung im Einkaufszentrum auf Terminals laufen soll, erfüllt.
+
+|===

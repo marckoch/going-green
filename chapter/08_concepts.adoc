@@ -1,0 +1,45 @@
+[[section-concepts]]
+== Querschnittliche Konzepte
+
+=== Datenhaltung
+
+* Der Katalog wird komplett im Lucene-Index gehalten. Hier liegen die Geräte (ohne Zuordnung zu einem Benutzer), z.B. "Apple iPhone 13, rot, 512 GB Speicher". Diese entsprechen der abstrakten Geräteklasse bzw. Produktklasse.
+
+* Die KundenTransaktionen werden in der relationalen Datenbank gehalten.
+Hier liegen konkrete kundenspezifische Instanzen, die jeweils einem physischen Gerät entsprechen.
+Diese sind potenziell durch eine Seriennummer eindeutig identifizierbar.
+
+* Der Kunde sucht das Gerät im Katalog. Findet er ein passendes Gerät,
+wird es durch seine Auswahl in den KundenTransaktionen angelegt.
+Dies entspricht dann 'seinem' Gerät.
+
+=== Datenmodell
+
+==== Im Lucene
+
+* Ein Gerät hat n Kategorien (z.B. "Handy", "Kaffeemaschine", "Wasserkocher", etc.)
+* Ein Gerät hat n Suchkriterien (z.B. Modellnamen, etc.)
+* Ein Gerät hat n Ausprägungen (z.B. "512 GB Speicher")
+
+*offen*: ist das nicht alles im Prinzip dasselbe? einfach ein Textfeld nach dem man suchen kann ...
+
+==== in der relationalen Datenbank
+
+Kundentransaktion:
+
+* eine KundenTransaktion hat
+** einen Kunden
+** ein Gerät
+** ein KundenGutachten
+** ein GutachterGutachten (doofer Name, ich weiss ...)
+* ein Gutachten besteht jeweils aus n Antworten und einem Restwert
+
+Fragen:
+
+* eine Frage hat n Antwortmöglichkeiten
+* jede Antwortmöglichkeit hat einen Restwert-Abschlagsfaktor
+
+*offen*:
+
+* wie kommt ein Gerät zu seinen n Fragen? Suchen tut man nach Geräten, daher liegen die im Lucene.
+Fragen liegen aber (vermutlich) in der relationalen Datenbank. Wie ist da die Verbindung?

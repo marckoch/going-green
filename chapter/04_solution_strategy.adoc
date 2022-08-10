@@ -1,0 +1,45 @@
+[[section-solution-strategy]]
+== Lösungsstrategie
+
+[cols="1,4,1"]
+|===
+|Aspekt|Lösung|siehe
+
+|Umsetzung
+|Das System wird als containerbasierte Webanwendung umgesetzt.
+|xxx
+
+|Umsetzung
+|Durch den Einsatz einer Volltext-Suchengine wird die Suchbarkeit der Geräte im Katalog optimiert
+|xxx
+
+|Einsatz auf Terminals
+|lässt sich leicht erfüllen, da das System als Webanwendung umgesetzt wird.
+Das Terminal benötigt einen Webbrowser und Internetzugang.
+Das Terminal und der Browser laufen im Kioskmodus (https://de.wikipedia.org/wiki/Kiosk-Modus)
+|xxx
+
+|Benutzerfreundlichkeit
+|durch den Einsatz moderner Oberflächenframeworks gegeben,
+welche von sich aus schon eine ansprechende, moderne Optik liefern.
+
+Beim Entwurf der Oberflächen werden aktuelle UI und UX best practices berücksichtigt
+(Oberflächen nicht überladen, Anzeige von Hilfetexten, etc.)
+|xxx
+
+|Statistiken
+a|* durch das anonyme Protokollieren von Suchanfragen der Kunden kann schnell auf Trends reagiert werden und neue Geräte im Katalog eingepflegt werden.
+Ausserdem können bestehende Geräte mit besseren Suchkriterien versehen werden.
+(Nicht explizit vom Kunden gefordert, würde ich ihm aber vorschlagen, um ein optimales Sucherlebnis des Kunden zu erreichen.)
+* durch Auswertung der abgeschlossenen Einsendevorgänge können nicht mehr gefragte Geräte aus dem Katalog entfernt werden
+|xxx
+
+|Skalierung
+|Der Einsatz von Containern und das Deployment beim CloudProvider erlaubt eine bedarfsgerechte Skalierung der Anwendung
+|xxx
+
+|Persistenz
+|Die Datenhaltung erfolgt zweigleisig: in der Suchengine und in einer relationalen Datenbank
+|xxx
+
+|===

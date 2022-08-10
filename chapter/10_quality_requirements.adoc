@@ -1,0 +1,33 @@
+[[section-quality-scenarios]]
+== Qualitätsanforderungen
+
+.Qualitätsanforderungen
+[cols="1,4"]
+|===
+|Thema|Begründung
+
+|Benutzbarkeit
+|Ein Benutzer kann ohne Einarbeitung oder Schulung ein im System vorhandenes Gerät suchen und finden
+
+|Benutzbarkeit
+|Ein Benutzer findet ein im System vorhandenes Gerät nach maximal drei Versuchen
+
+|Benutzbarkeit
+|Ein Benutzer bekommt nach maximal 5 beantworteten Fragen eine Restwertauskunft
+
+|Skalierbarkeit
+|Die Anwendung kann die zukünftig erwarteten Anwenderzahlen ohne Performanceeinbußen bedienen
+
+|Funktionalität
+|Jedem Gerät sind eigene Regeln zugeordnet
+
+|Funktionalität
+|Jedem Gerät sind eigene Suchkriterien zugeordnet
+
+|Funktionalität
+|die Suche nach Geräten ist "nachsichtig" gegenüber Benutzereingaben, d.h. Gross/Kleinschreibung, Vertippern, Wildcards
+
+|Funktionalität
+|Die Anwendung läuft in Einkaufszentren auf Kiosk-Terminals
+
+|===

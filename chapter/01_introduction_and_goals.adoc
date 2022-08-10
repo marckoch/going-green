@@ -1,0 +1,59 @@
+[[section-introduction-and-goals]]
+== Einführung und Ziele
+
+=== Aufgabenstellung
+
+Siehe kata.md
+
+=== Vergleichbare Systeme
+
+Ähnliche Anwendungen gibt es z.B. bei
+
+https://momox.de
+
+https://www.zoxs.de
+
+https://www.rebuy.de/verkaufen
+
+=== Qualitätsziele
+
+.Die wichtigsten Ziele
+[cols="1,2,7"]
+|===
+|Nr.|Ziel|Erläuterung
+
+|1|Skalierbarkeit|ergibt sich aus den erwarteten Benutzerzahlen (Hunderte->Tausende->Millionen)
+
+|2|Benutzerfreundlich|Der Benutzer soll einfach und schnell Auskunft bekommen, ob sich das Einsenden für ihn finanziell lohnt.
+Dies ergibt sich auch aus der Tatsache, dass Terminals im Einkaufszentrum (Kiosks) verwendet werden.
+Diese müssen einfach und intuitiv bedienbar und selbsterklärend sein.
+
+Auch das Einpflegen neuer Geräte im Backoffice muss einfach möglich sein.
+
+|3|Konfigurierbarkeit|Jeder Gerätetyp hat eigene Regeln
+|===
+
+NOTE: Diese Punkte ergeben sich alle aus der Anforderung. Die Reihenfolge ist meine Annahme.
+
+=== Stakeholder
+
+.Stakeholder
+[cols="1,4"]
+|===
+|Stakeholder|Erwartung
+
+|Unternehmen
+a|
+* Neue Absatzmöglichkeiten im Recycling-Business
+* Lauffähigkeit auf Kiosk-Terminals
+
+|Kunde
+a|
+* Einfache, intuitive Bedienbarkeit
+* Möglichkeit Geld zu verdienen und etwas Gutes tun für die Umwelt
+
+|Backoffice
+a|
+* einfache, intuitive Bedienbarkeit beim Einpflegen neuer Geräte und Regeln
+
+|===

@@ -1,0 +1,81 @@
+=== Ablauf der KundenTransaktion
+
+Folgendes Diagramm zeigt den Ablauf und die Aktionen der verschiedenen Aktoren.
+
+Die blau unterlegten Aktionen finden im System statt.
+Die gelblichen Aktionen sind offline Aktionen, die auf dem Postweg erfolgen
+(Versand der Rücksendebox, des Gerätes und des Schecks)
+
+.Swimlanes
+[plantuml, target=swimlanes-des-prozesses, format=png]
+....
+@startuml
+|Kunde|
+start
+#lightblue:sucht Gerät;
+
+if (findet Gerät?) is (nein) then
+stop
+else (ja)
+#lightblue:beantwortet
+Fragen zum Gerät
+(Eigengutachten);
+endif
+
+#lightblue:System schlägt Restwert vor;
+
+if (vorgeschlagener\nRestwert akzeptabel?) is (nein) then
+:Kunde schickt
+Gerät nicht ein;
+stop
+else (ja)
+#lightblue:Kunde gibt
+seine Daten ein;
+endif
+
+|Backoffice|
+#lightblue:öffnet
+KundenTransaktion
+im System;
+#lightyellow:verschickt
+Rücksendebox
+an Kunden;
+->Postweg;
+|Kunde|
+#lightyellow:empfängt
+Rücksendebox;
+#lightyellow:verschickt Gerät
+in Rücksendebox;
+->Postweg;
+
+|Gutachter|
+#lightyellow:empfängt Gerät;
+
+#lightblue:öffnet
+KundenTransaktion
+im System;
+
+#lightblue:begutachtet Gerät
+(GutachterGutachten);
+
+if (Restwert > 0) is (ja) then
+#lightblue:triggert Auszahlung;
+else (nein)
+stop
+endif
+
+|Buchhaltung|
+#lightblue:öffnet
+KundenTransaktion
+im System;
+#lightyellow:verschickt Scheck;
+->Postweg;
+
+|Kunde|
+#lightyellow:erhält Scheck;
+
+stop
+
+@enduml
+
+....

@@ -1,0 +1,75 @@
+[[section-building-block-view]]
+== Bausteinsicht
+
+=== Ebene 1
+
+Hier die Bausteinsicht der Applikation im technischen Kontext (C4 - Ebene 1). Vergleiche hierzu <<Fachlicher Context>>
+
+.Bausteinsicht - Ebene 1
+[plantuml, target=Bausteinsicht-C4-Ebene1, format=png]
+....
+@startuml
+!include  <C4/C4_Context.puml>
+
+title Context Diagramm für GoingGreen
+
+Person(Benutzer, <<Benutzer>>, Browser)
+System(GoingGreen, "GoingGreen", "WebApplication")
+Rel_D(Benutzer, GoingGreen, HTTPS)
+
+SHOW_LEGEND()
+
+@enduml
+....
+
+=== Ebene 2
+
+Hier ein Überblick über die Teilkomponenten des Systems (C4 - Ebene 2).
+
+.Bausteinsicht - Ebene 2
+[plantuml, target=Bausteinsicht-C4-Ebene2, format=png]
+....
+@startuml
+!include <C4/C4_Context.puml>
+!include <C4/C4_Container.puml>
+
+title Bausteinsicht für GoingGreen (Ebene 2)
+
+Person(backoffice, <<Benutzer>>, Backoffice)
+Person(kunde, <<Benutzer>>, Kunde)
+Person(guta, <<Benutzer>>, Gutachter)
+
+System_Boundary(Remote, "GoingGreen") {
+    Container(Statistik, "Statistik", Statistik)
+    Container(Katalog, "Katalog", "SearchEngine")
+    Container(kt, "KundenTransaktion", 2 Gutachten)
+    ContainerDb(DB, "Relationale Datenbank", "SQL")
+}
+
+Rel(kunde, Katalog, sucht im, https)
+Rel(kunde, kt, startet, https)
+
+Rel(backoffice, Katalog, pflegt, https)
+Rel(backoffice, Statistik, analysiert, https)
+
+Rel(guta, kt, genehmigt, https)
+
+Rel(Statistik, DB, Datenhaltung)
+Rel(kt, DB, Datenhaltung)
+Rel(Katalog, DB, Datenhaltung)
+
+SHOW_LEGEND()
+
+@enduml
+....
+
+.Komponenten im System
+[cols="1,3"]
+|===
+|Komponente|Zweck
+
+|Katalog|beinhaltet alle Produkte/Geräte und die Suche nach diesen (CRUD)
+|Statistik|die anonymisierten Statistiken aller Suchbegriffe
+|KundenTransaktion|Kunde und Gutachter führen ihr Gutachten durch
+|Datenbank|hält die Daten
+|===

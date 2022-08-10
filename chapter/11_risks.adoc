@@ -1,0 +1,28 @@
+[[section-risks]]
+== Risiken
+
+.Risiken
+[cols="1,5"]
+|===
+|Thema|Begründung
+
+|Suche/Datenmodell
+|Dieser Punkt erfordert weitere Analyse: Wie kann man die Geräte sauber kategorisieren, einordnen, verschlagworten, etc.
+Braucht man noch Varianten? Was sind dann Modelle? Oder macht es das zu kompliziert?
+Da fehlt mir fachliches Knowhow und Beispieldaten. Hier müsste man noch etwas weiter recherchieren.
+
+Es scheint sehr schwierig unterschiedlichste Geräte(Typen) einheitlich abbilden zu können.
+Schnell ist man bei Modellen, Modellreihen, Varianten, Facelifts, Produkten, Typen, Ausprägungen, Kategorien, Unterkategorien, etc.
+siehe vergleichbare Seiten
+
+Ein Handy ("Apple iPhone 13") hat sicher andere Parameter/Attribute/Merkmale als eine
+Powerbank oder eine Kaffeemaschine oder eine Taschenlampe oder ein Rasierapparat oder
+eine elektrische Zahnbürste, etc.
+
+Der kleinste gemeinsame Nenner aller Geräte ist vermutlich: Name, Hersteller.
+Bei den Fragen zum Gerätezustand: Alter, funktionstüchtig ja/nein
+
+>> das zeigt recht deutlich, dass man diese unterschiedlichen Geräte nicht in ein Schema pressen kann -> schemalos!
+Also die Geräte evtl alle in einer schemalosen NoSQL-Datenbank halten.
+Aber wie kann man diese Daten für das Backoffice gut pflegbar machen?
+|===

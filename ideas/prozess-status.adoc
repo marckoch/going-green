@@ -1,0 +1,24 @@
+== Prozess samt Status
+
+.Statusübergänge der KundenTransaktion
+[plantuml, target=statusmodell, format=png]
+....
+@startuml
+
+[*] --> AnfrageEingegangen : System setzt bei Neuanlage auf
+
+AnfrageEingegangen --> BoxVerschickt : Backoffice setzt nach Versand der Rücksendebox auf
+
+BoxVerschickt --> EinsendungErhalten : Gutachter setzt bei Beginn des Gutachtens auf
+
+EinsendungErhalten --> GutachtenAbgeschlossen : Gutachter setzt nach Ende des Gutachtens auf
+
+GutachtenAbgeschlossen --> AuszahlungErfolgt : Buchhaltung setzt bei Versendung des Schecks auf
+
+AuszahlungErfolgt --> [*]
+
+@enduml
+....
+
+Jeder Statusübergang wird immer mit Datum und Uhrzeit gespeichert.
+So ist der Ablauf später nachvollziehbar oder auswertbar.
